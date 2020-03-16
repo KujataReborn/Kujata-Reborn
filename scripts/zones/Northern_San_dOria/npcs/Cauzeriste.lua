@@ -15,11 +15,10 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local guildRank = player:getSkillRank(tpz.skill.WOODWORKING)
-    local stock = tpz.shop.generalGuildStock[guild.woodworking]
-    tpz.shop.generalGuild(player, stock, guildRank)
-    player:showText(npc,ID.text.CAUZERISTE_SHOP_DIALOG)
-end
+    if (player:sendGuild(513,6,21,0)) then
+        player:showText(npc,ID.text.CAUZERISTE_SHOP_DIALOG);
+    end
+end;
 
 function onEventUpdate(player,csid,option)
 end
