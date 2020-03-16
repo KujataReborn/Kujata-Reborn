@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:sendGuild(5182, 3, 18, 5) then
+    if player:sendGuild(518, 3, 18, 5) then
         player:showText(npc,ID.text.FISHING_SHOP_DIALOG)
     end
 end
