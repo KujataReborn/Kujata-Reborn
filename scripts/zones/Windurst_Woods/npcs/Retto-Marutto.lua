@@ -15,10 +15,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local guildRank = player:getSkillRank(tpz.skill.BONECRAFT)
-    local stock = tpz.shop.generalGuildStock[guild.bonecraft]
-    tpz.shop.generalGuild(player, stock, guildRank)
+    if player:sendGuild(5142,8,23,3) then
     player:showText(npc,ID.text.RETTO_MARUTTO_DIALOG)
+    end
 end
 
 function onEventUpdate(player,csid,option)
