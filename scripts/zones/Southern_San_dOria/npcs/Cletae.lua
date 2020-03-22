@@ -22,10 +22,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local guildRank = player:getSkillRank(tpz.skill.LEATHERCRAFT)
-    local stock = tpz.shop.generalGuildStock[guild.leathercraft]
-    tpz.shop.generalGuild(player, stock, guildRank)
-    player:showText(npc,ID.text.CLETAE_DIALOG)
+    if (player:sendGuild(5292,3,18,4)) then
+        player:showText(npc,ID.text.CLETAE_DIALOG);
+    end
 end
 
 function onEventUpdate(player,csid,option)
