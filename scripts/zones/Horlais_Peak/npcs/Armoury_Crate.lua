@@ -481,67 +481,67 @@ local loot =
     [12] =
     {
         {
-            {itemid = 0, droprate = 910},    -- Nothing
-            {itemid = 13056, droprate = 90}, -- Peacock Charm
+            {itemid = 0, droprate = 900},    -- Nothing
+            {itemid = 13056, droprate = 100}, -- Peacock Charm
         },
         {
-            {itemid = 0, droprate = 467},    -- Nothing
-            {itemid = 18086, droprate = 48}, -- Behourd Lance
-            {itemid = 18046, droprate = 61}, -- Mutilator
-            {itemid = 18210, droprate = 46}, -- Raifu
-            {itemid = 15286, droprate = 302},-- Tilt Belt
-            {itemid = 18350, droprate = 76}, -- Tourney Patas
+            {itemid = 0, droprate = 500},    -- Nothing
+            {itemid = 18086, droprate = 50}, -- Behourd Lance
+            {itemid = 18046, droprate = 50}, -- Mutilator
+            {itemid = 18210, droprate = 50}, -- Raifu
+            {itemid = 15286, droprate = 300},-- Tilt Belt
+            {itemid = 18350, droprate = 50}, -- Tourney Patas
         },
         {
-            {itemid = 0, droprate = 413},    -- Nothing
-            {itemid = 17696, droprate = 42}, -- Buzzard Tuck
-            {itemid = 17936, droprate = 77}, -- De Saintres Axe
-            {itemid = 17693, droprate = 73}, -- Grudge Sword
-            {itemid = 15287, droprate = 258},-- Mantra Belt
-            {itemid = 4717, droprate = 68},  -- Scroll Of Refresh
-            {itemid = 4947, droprate = 55},  -- Scroll Of Utsusemi Ni
-            {itemid = 4858, droprate = 14},  -- Scroll Of Ice Spikes
+            {itemid = 0, droprate = 400},    -- Nothing
+            {itemid = 17696, droprate = 50}, -- Buzzard Tuck
+            {itemid = 17936, droprate = 50}, -- De Saintres Axe
+            {itemid = 17693, droprate = 50}, -- Grudge Sword
+            {itemid = 15287, droprate = 300},-- Mantra Belt
+            {itemid = 4717, droprate = 50},  -- Scroll Of Refresh
+            {itemid = 4947, droprate = 100},  -- Scroll Of Utsusemi Ni
+            {itemid = 4858, droprate = 50},  -- Scroll Of Ice Spikes
         },
         {
-            {itemid = 4858, droprate = 114}, -- Scroll Of Ice Spikes
-            {itemid = 4717, droprate = 174}, -- Scroll Of Refresh
-            {itemid = 4947, droprate = 138}, -- Scroll Of Utsusemi Ni
-            {itemid = 769, droprate = 16},   -- Red Rock
-            {itemid = 770, droprate = 17},   -- Blue Rock
-            {itemid = 771, droprate = 17},   -- Yellow Rock
-            {itemid = 772, droprate = 18},   -- Green Rock
-            {itemid = 773, droprate = 17},   -- Translucent Rock
-            {itemid = 774, droprate = 16},   -- Purple Rock
-            {itemid = 775, droprate = 18},   -- Black Rock
-            {itemid = 776, droprate = 16},   -- White Rock
-            {itemid = 749, droprate = 102},  -- Mythril Beastcoin
+            {itemid = 4858, droprate = 100}, -- Scroll Of Ice Spikes
+            {itemid = 4717, droprate = 150}, -- Scroll Of Refresh
+            {itemid = 4947, droprate = 150}, -- Scroll Of Utsusemi Ni
+            {itemid = 769, droprate = 20},   -- Red Rock
+            {itemid = 770, droprate = 20},   -- Blue Rock
+            {itemid = 771, droprate = 20},   -- Yellow Rock
+            {itemid = 772, droprate = 20},   -- Green Rock
+            {itemid = 773, droprate = 20},   -- Translucent Rock
+            {itemid = 774, droprate = 20},   -- Purple Rock
+            {itemid = 775, droprate = 20},   -- Black Rock
+            {itemid = 776, droprate = 20},   -- White Rock
+            {itemid = 749, droprate = 100},  -- Mythril Beastcoin
             {itemid = 748, droprate = 120},  -- Gold Beastcoin
-            {itemid = 699, droprate = 22},   -- Oak Log
-            {itemid = 811, droprate = 18},   -- Ametrine
-            {itemid = 793, droprate = 18},   -- Black Pearl
+            {itemid = 699, droprate = 20},   -- Oak Log
+            {itemid = 811, droprate = 20},   -- Ametrine
+            {itemid = 793, droprate = 20},   -- Black Pearl
             {itemid = 790, droprate = 20},   -- Garnet
-            {itemid = 808, droprate = 19},   -- Goshenite
-            {itemid = 792, droprate = 21},   -- Pearl
-            {itemid = 788, droprate = 35},   -- Peridot
-            {itemid = 815, droprate = 17},   -- Sphene
-            {itemid = 798, droprate = 23},   -- Turquoise
-            {itemid = 4172, droprate = 21},  -- Reraiser
-            {itemid = 4174, droprate = 16},  -- Vile Elixir
+            {itemid = 808, droprate = 20},   -- Goshenite
+            {itemid = 792, droprate = 20},   -- Pearl
+            {itemid = 788, droprate = 20},   -- Peridot
+            {itemid = 815, droprate = 20},   -- Sphene
+            {itemid = 798, droprate = 20},   -- Turquoise
+            {itemid = 4172, droprate = 20},  -- Reraiser
+            {itemid = 4174, droprate = 20},  -- Vile Elixir
         },
         {
-            {itemid = 4896, droprate = 116}, -- Fire Spirit Pact
-            {itemid = 4874, droprate = 113}, -- Scroll Of Absorb-str
-            {itemid = 4751, droprate = 137}, -- Scroll Of Erase
-            {itemid = 4858, droprate = 67},  -- Scroll Of Ice Spikes
-            {itemid = 4714, droprate = 99},  -- Scroll Of Phalanx
-            {itemid = 811, droprate = 58},   -- Ametrine
-            {itemid = 793, droprate = 52},   -- Black Pearl
-            {itemid = 790, droprate = 51},   -- Garnet
-            {itemid = 808, droprate = 65},   -- Goshenite
-            {itemid = 792, droprate = 61},   -- Pearl
-            {itemid = 788, droprate = 63},   -- Peridot
-            {itemid = 815, droprate = 55},   -- Sphene
-            {itemid = 798, droprate = 62},   -- Turquoise
+            {itemid = 4896, droprate = 100}, -- Fire Spirit Pact
+            {itemid = 4874, droprate = 100}, -- Scroll Of Absorb-str
+            {itemid = 4751, droprate = 150}, -- Scroll Of Erase
+            {itemid = 4858, droprate = 70},  -- Scroll Of Ice Spikes
+            {itemid = 4714, droprate = 100},  -- Scroll Of Phalanx
+            {itemid = 811, droprate = 60},   -- Ametrine
+            {itemid = 793, droprate = 60},   -- Black Pearl
+            {itemid = 790, droprate = 60},   -- Garnet
+            {itemid = 808, droprate = 60},   -- Goshenite
+            {itemid = 792, droprate = 60},   -- Pearl
+            {itemid = 788, droprate = 60},   -- Peridot
+            {itemid = 815, droprate = 60},   -- Sphene
+            {itemid = 798, droprate = 60},   -- Turquoise
         },
         {
             {itemid = 939, droprate = 1000}, -- Hecteyes Eye
