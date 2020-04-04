@@ -25,8 +25,10 @@ function onSpellCast(caster, target, spell)
     spellParams.M100 = 2
     spellParams.M200 = 2
     spellParams.I = 780
-    spellParams.bonusmab = caster:getMerit(tpz.merit.ANCIENT_MAGIC_ATK_BONUS)
-    spellParams.AMIIburstBonus = caster:getMerit(tpz.merit.ANCIENT_MAGIC_BURST_DMG)/100
+    if caster:getMerit(dsp.merit.BURST_II) ~= 0 then
+        spellParams.AMIIburstBonus = (caster:getMerit(dsp.merit.BURST_II) - 1) * 0.03
+        spellParams.AMIIaccBonus = (caster:getMerit(dsp.merit.BURST_II) - 1) * 5
+    end
 
     -- no point in making a separate function for this if the only thing they won't have in common is the name
     handleNinjutsuDebuff(caster,target,spell,30,10,tpz.mod.EARTHRES)

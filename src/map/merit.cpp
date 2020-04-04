@@ -127,17 +127,17 @@ static const MeritCategoryInfo_t meritCatInfo[] =
 
     {4,10,7},  //MCATEGORY_WAR_2
     {4,10,7},  //MCATEGORY_MNK_2
-    {6,10,7},  //MCATEGORY_WHM_2
-    {12,10,7},  //MCATEGORY_BLM_2
-    {12,10,7},  //MCATEGORY_RDM_2
+    {4,10,7},  //MCATEGORY_WHM_2
+    {6,10,7},  //MCATEGORY_BLM_2
+    {6,10,7},  //MCATEGORY_RDM_2
     {4,10,7},  //MCATEGORY_THF_2
     {4,10,7},  //MCATEGORY_PLD_2
     {4,10,7},  //MCATEGORY_DRK_2
     {4,10,7},  //MCATEGORY_BST_2
-    {6,10,7},  //MCATEGORY_BRD_2
+    {4,10,7},  //MCATEGORY_BRD_2
     {4,10,7},  //MCATEGORY_RNG_2
     {4,10,7},  //MCATEGORY_SAM_2
-    {12,10,7},  //MCATEGORY_NIN_2
+    {8,10,7},  //MCATEGORY_NIN_2
     {4,10,7},  //MCATEGORY_DRG_2
     {6,10,7},  //MCATEGORY_SMN_2
     {4,10,7},  //MCATEGORY_BLU_2
