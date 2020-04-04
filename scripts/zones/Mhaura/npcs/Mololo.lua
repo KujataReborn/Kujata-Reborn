@@ -15,10 +15,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local guildRank = player:getSkillRank(tpz.skill.SMITHING)
-    local stock = tpz.shop.generalGuildStock[guild.smithing]
-    tpz.shop.generalGuild(player, stock, guildRank)
-    player:showText(npc,ID.text.SMITHING_GUILD)
+    if (player:sendGuild(532,8,23,2)) then
+        player:showText(npc,ID.text.SMITHING_GUILD)
+    end
 end
 
 function onEventUpdate(player,csid,option)
