@@ -25,14 +25,15 @@ function onSpellCast(caster,target,spell)
     params.hasMultipleTargetReduction = false
 
     local dmg = calculateMagicDamage(caster, target, spell, params)
-    dmg = dmg + caster:getMod(tpz.mod.HELIX_EFFECT)
+    -- dmg = dmg + caster:getMod(tpz.mod.HELIX_EFFECT)
+
     -- get resist multiplier (1x if no resist)
     local params = {}
     params.diff = caster:getStat(tpz.mod.INT)-target:getStat(tpz.mod.INT)
     params.attribute = tpz.mod.INT
     params.skillType = tpz.skill.ELEMENTAL_MAGIC
     -- bonus accuracy from merit
-    params.bonus = merit*3
+    params.bonus = merit * 3
     local resist = applyResistance(caster, target, spell, params)
     -- get the resisted damage
     dmg = dmg*resist
@@ -48,7 +49,7 @@ function onSpellCast(caster,target,spell)
     -- calculate Damage over time
     dot = target:magicDmgTaken(dot)
 
-    local duration = getHelixDuration(caster) + caster:getMod(tpz.mod.HELIX_DURATION)
+    local duration = getHelixDuration(caster) -- + caster:getMod(tpz.mod.HELIX_DURATION)
 
     duration = duration * (resist/2)
 
