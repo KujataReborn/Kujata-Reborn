@@ -3421,7 +3421,7 @@ INSERT INTO `item_basic` VALUES (3546,0,'piece_of_staghorn_coral','staghorn_cora
 INSERT INTO `item_basic` VALUES (3547,0,'sealord_skin','sealord_skin',12,4,41,1,0);
 INSERT INTO `item_basic` VALUES (3548,0,'square_of_sealord_leather','sealord_leather',12,4,41,1,0);
 INSERT INTO `item_basic` VALUES (3549,0,'vial_of_belladonna_sap','belladonna_sap',12,4,44,1,0);
-INSERT INTO `item_basic` VALUES (3550,0,'spool_of_wyrdstrand','wyrdstrand',12,4,40,1,0);
+INSERT INTO `item_basic` VALUES (3550,0,'spool_of_wyrdstrand','wyrdstrand',12,4,40,1,1319);
 INSERT INTO `item_basic` VALUES (3551,0,'square_of_wyrdweave','wyrdweave',12,4,40,1,0);
 INSERT INTO `item_basic` VALUES (3552,0,'squamous_hide','squamous_hide',12,4,41,1,0);
 INSERT INTO `item_basic` VALUES (3553,0,'banquet_table_blueprint','b._table_blueprint',1,28752,0,1,0);
@@ -3838,6 +3838,7 @@ INSERT INTO `item_basic` VALUES (4082,0,'piece_of_moonlight_coral','moonlight_co
 INSERT INTO `item_basic` VALUES (4083,0,'handful_of_beryllium_arrowheads','ber._arrowheads',99,4,0,0,0);
 INSERT INTO `item_basic` VALUES (4084,0,'bag_of_mixed_fletchings','mixed_fletchings',99,4,0,0,0);
 INSERT INTO `item_basic` VALUES (4085,0,'handful_of_beryllium_bolt_heads','ber._bolt_heads',99,4,0,0,0);
+INSERT INTO `item_basic` VALUES (4086,0,'lustreless_scale','lustreless_scale',99,4,46,1,0);
 INSERT INTO `item_basic` VALUES (4094,0,'bowl_of_goblin_stew_880','goblin_stew_880',1,61520,0,0,0);
 INSERT INTO `item_basic` VALUES (4095,0,'bismuth_sheet','bismuth_sheet',12,4,38,0,0);
 INSERT INTO `item_basic` VALUES (4096,0,'fire_crystal','fire_crystal',12,516,35,0,13);
