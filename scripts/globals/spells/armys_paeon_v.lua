@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Army's Paeon V
--- Gradually restores target's HP.
+-- Gradually restores HP for party members within the area of effect.
 -----------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/msg")
@@ -15,29 +15,28 @@ function onSpellCast(caster,target,spell)
     local iLvl = caster:getWeaponSkillLevel(tpz.slot.RANGED)
 
     local power = 5
-
-    if (sLvl+iLvl > 350) then
+    if sLvl + iLvl > 411 then
         power = power + 1
     end
 
     local iBoost = caster:getMod(tpz.mod.PAEON_EFFECT) + caster:getMod(tpz.mod.ALL_SONGS_EFFECT)
     power = power + iBoost
 
-    if (caster:hasStatusEffect(tpz.effect.SOUL_VOICE)) then
+    if caster:hasStatusEffect(tpz.effect.SOUL_VOICE) then
         power = power * 2
-    elseif (caster:hasStatusEffect(tpz.effect.MARCATO)) then
-        power = power * 1.5
+    -- elseif caster:hasStatusEffect(tpz.effect.MARCATO) then
+        -- power = power * 1.5
+        -- caster:delStatusEffect(tpz.effect.MARCATO)
     end
-    caster:delStatusEffect(tpz.effect.MARCATO)
 
     local duration = 120
-    duration = duration * ((iBoost * 0.1) + (caster:getMod(tpz.mod.SONG_DURATION_BONUS)/100) + 1)
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(tpz.mod.SONG_DURATION_BONUS) / 100) + 1)
 
-    if (caster:hasStatusEffect(tpz.effect.TROUBADOUR)) then
+    if caster:hasStatusEffect(tpz.effect.TROUBADOUR) then
         duration = duration * 2
     end
 
-    if not (target:addBardSong(caster,tpz.effect.PAEON,power,0,duration,caster:getID(), 0, 5)) then
+    if not target:addBardSong(caster, tpz.effect.PAEON, power, 0, duration, caster:getID(), 0, 5) then
         spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
     end
 

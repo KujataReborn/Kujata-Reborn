@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Valor Minuet II
--- Grants Attack bonus to all allies.
+-- Increases attack for party members within the area of effect.
 -----------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/msg")
@@ -14,38 +14,34 @@ function onSpellCast(caster,target,spell)
     local sLvl = caster:getSkillLevel(tpz.skill.SINGING) -- Gets skill level of Singing
     local iLvl = caster:getWeaponSkillLevel(tpz.slot.RANGED)
 
-    local power = 10
-
-    if (sLvl+iLvl > 85) then
-        power = power + math.floor((sLvl+iLvl-85) / 6)
+    local power = 9
+    if sLvl + iLvl > 85 then
+        power = power + math.floor((sLvl + iLvl - 85) / 6)
     end
-
-    if (power >= 64) then
-        power = 64
-    end
+    power = math.min(power, 32) -- Cap before bonuses
 
     local iBoost = caster:getMod(tpz.mod.MINUET_EFFECT) + caster:getMod(tpz.mod.ALL_SONGS_EFFECT)
-    if (iBoost > 0) then
-        power = power + iBoost*6
+    if iBoost > 0 then
+        power = power + 1 + (iBoost - 1) * 4
     end
 
     power =  power + caster:getMerit(tpz.merit.MINUET_EFFECT)
 
-    if (caster:hasStatusEffect(tpz.effect.SOUL_VOICE)) then
+    if caster:hasStatusEffect(tpz.effect.SOUL_VOICE) then
         power = power * 2
-    elseif (caster:hasStatusEffect(tpz.effect.MARCATO)) then
-        power = power * 1.5
+    -- elseif caster:hasStatusEffect(tpz.effect.MARCATO) then
+        -- power = power * 1.5
+        -- caster:delStatusEffect(tpz.effect.MARCATO)
     end
-    caster:delStatusEffect(tpz.effect.MARCATO)
 
     local duration = 120
-    duration = duration * ((iBoost * 0.1) + (caster:getMod(tpz.mod.SONG_DURATION_BONUS)/100) + 1)
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(tpz.mod.SONG_DURATION_BONUS) / 100) + 1)
 
-    if (caster:hasStatusEffect(tpz.effect.TROUBADOUR)) then
+    if caster:hasStatusEffect(tpz.effect.TROUBADOUR) then
         duration = duration * 2
     end
 
-    if not (target:addBardSong(caster,tpz.effect.MINUET,power,0,duration,caster:getID(), 0, 2)) then
+    if not target:addBardSong(caster, tpz.effect.MINUET, power, 0, duration, caster:getID(), 0, 2) then
         spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
     end
 

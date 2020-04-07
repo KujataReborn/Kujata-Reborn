@@ -1,5 +1,6 @@
 -----------------------------------------
--- Spell: Threnody - tpz.mod.LIGHTRES
+-- Spell: Light Threnody
+-- Reduces the target's resistance against light.
 -----------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/magic")

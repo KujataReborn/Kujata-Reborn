@@ -1,5 +1,6 @@
 -----------------------------------------
--- Spell: Threnody - tpz.mod.WATERRES
+-- Spell: Water Threnody
+-- Reduces the target's resistance against water.
 -----------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/magic")

@@ -1,5 +1,6 @@
 -----------------------------------------
--- Spell: Threnody - tpz.mod.EARTHRES
+-- Spell: Earth Threnody
+-- Reduces the target's resistance against earth.
 -----------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/magic")

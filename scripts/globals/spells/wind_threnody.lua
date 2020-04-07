@@ -1,5 +1,6 @@
 -----------------------------------------
--- Spell: Threnody - tpz.mod.WINDRES
+-- Spell: Wind Threnody
+-- Reduces the target's resistance against wind.
 -----------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/magic")

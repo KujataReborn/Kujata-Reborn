@@ -1,5 +1,6 @@
 -----------------------------------------
--- Spell: Threnody - tpz.mod.ICERES
+-- Spell: Ice Threnody
+-- Reduces the target's resistance against ice.
 -----------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/magic")

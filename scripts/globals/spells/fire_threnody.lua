@@ -1,5 +1,6 @@
 -----------------------------------------
--- Spell: Threnody - tpz.mod.FIRERES
+-- Spell:  Fire Threnody
+-- Reduces the target's resistance against fire.
 -----------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/magic")
