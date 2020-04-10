@@ -5,6 +5,7 @@
 -- !pos 14.344 -7.912 10.276 248
 -----------------------------------
 local ID = require("scripts/zones/Selbina/IDs")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)

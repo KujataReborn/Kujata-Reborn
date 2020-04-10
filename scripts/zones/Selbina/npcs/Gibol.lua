@@ -6,19 +6,15 @@
 -----------------------------------
 local ID = require("scripts/zones/Selbina/IDs")
 require("scripts/globals/shop")
-require("scripts/globals/crafting")
-require("scripts/globals/settings")
-require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local guildRank = player:getSkillRank(tpz.skill.CLOTHCRAFT)
-    local stock = tpz.shop.generalGuildStock[guild.clothcraft]
-    tpz.shop.generalGuild(player, stock, guildRank)
-    player:showText(npc,ID.text.CLOTHCRAFT_SHOP_DIALOG)
+    if player:sendGuild(516, 6, 21, 0) then
+        player:showText(npc,ID.text.CLOTHCRAFT_SHOP_DIALOG)
+    end
 end
 
 function onEventUpdate(player,csid,option)
