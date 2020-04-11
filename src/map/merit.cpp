@@ -37,12 +37,12 @@
 
 static uint8 upgrade[10][16] =
 {
-    {1,2,3,4,5,5,5,5,5,7,7,7,9,9,9},             // HP-MP
-    {3,6,9,9,9,12,12,12,12,15,15,15,15,19,18},   // Attributes
+    {1,2,3,4,5,5,5,5},                           // HP-MP
+    {3,6,9,9,9},                                 // Attributes
     {1,2,3,3,3,3,3,3},                           // Combat Skills
-    {1,2,3,3,3,3,3,3},                           // Defensive Skills
+    {1,2,3,3},                                   // Defensive Skills
     {1,2,3,3,3,3,3,3},                           // Magic Skills
-    {1,2,3,4,5},                                 // Others
+    {1,2,3,4},                                   // Others
     {1,2,3,4,5},                                 // Job Group 1
     {3,4,5,5,5},                                 // Job Group 2
     {20,22,24,27,30},                            // Weapon Skills
@@ -90,11 +90,11 @@ struct MeritCategoryInfo_t
 
 static const MeritCategoryInfo_t meritCatInfo[] =
 {
-    {3,45,0},  //MCATEGORY_HP_MP
-    {7,105,1},  //MCATEGORY_ATTRIBUTES
-    {19,152,2}, //MCATEGORY_COMBAT
-    {14,112,4}, //MCATEGORY_MAGIC
-    {5,10,5},  //MCATEGORY_OTHERS
+    {3,8,0},   //MCATEGORY_HP_MP
+    {7,5,1},   //MCATEGORY_ATTRIBUTES
+    {19,20,2}, //MCATEGORY_COMBAT
+    {14,16,4}, //MCATEGORY_MAGIC
+    {5,8,5},   //MCATEGORY_OTHERS
 
     {5,10,6},  //MCATEGORY_WAR_1
     {5,10,6},  //MCATEGORY_MNK_1
