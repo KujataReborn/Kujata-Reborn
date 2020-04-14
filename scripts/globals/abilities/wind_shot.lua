@@ -9,15 +9,13 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player, target, ability)
-    --ranged weapon/ammo: You do not have an appropriate ranged weapon equipped.
-    --no card: <name> cannot perform that action.
     if player:getWeaponSkillType(tpz.slot.RANGED) ~= tpz.skill.MARKSMANSHIP or player:getWeaponSkillType(tpz.slot.AMMO) ~= tpz.skill.MARKSMANSHIP then
-        return 216, 0
+        return 216, 0 -- You do not have an appropriate ranged weapon equipped.
     end
-    if player:hasItem(2178, 0) or player:hasItem(2974, 0) then
+    if player:hasItem(2178, 0) then -- Wind Card
         return 0, 0
     else
-        return 71, 0
+        return 71, 0 -- <name> cannot perform that action.
     end
 end
 
@@ -35,6 +33,7 @@ function onUseAbility(player, target, ability, action)
 
     if dmg > 0 then
         local effects = {}
+
         local choke = target:getStatusEffect(tpz.effect.CHOKE)
         if choke ~= nil then
             table.insert(effects, choke)
@@ -44,6 +43,7 @@ function onUseAbility(player, target, ability, action)
         if threnody ~= nil and threnody:getSubPower() == tpz.mod.EARTHRES then
             table.insert(effects, threnody)
         end
+
         --TODO: Frightful Roar
         --[[local frightfulRoar = target:getStatusEffect(tpz.effect.)
         if (frightfulRoar ~= nil) then
@@ -61,15 +61,24 @@ function onUseAbility(player, target, ability, action)
             local tier = effect:getTier()
             local effectId = effect:getType()
             local subId = effect:getSubType()
-            power = power * 1.2
+            
+            if effectId == tpz.effect.CHOKE then
+                power = math.floor(power * 1.2)
+            elseif effectId == tpz.effect.THRENODY then
+                power = math.floor(power * 1.5)
+            end
+
             target:delStatusEffectSilent(effectId)
             target:addStatusEffect(effectId, power, tick, duration, subId, subpower, tier)
+
             local newEffect = target:getStatusEffect(effectId)
             newEffect:setStartTime(startTime)
         end
     end
 
-    local del = player:delItem(2178, 1) or player:delItem(2974, 1)
     target:updateClaim(player)
+
+    player:delItem(2178, 1) -- Wind Card
+
     return dmg
 end

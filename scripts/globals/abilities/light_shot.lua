@@ -8,15 +8,14 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player, target, ability)
-    --ranged weapon/ammo: You do not have an appropriate ranged weapon equipped.
-    --no card: <name> cannot perform that action.
     if player:getWeaponSkillType(tpz.slot.RANGED) ~= tpz.skill.MARKSMANSHIP or player:getWeaponSkillType(tpz.slot.AMMO) ~= tpz.skill.MARKSMANSHIP then
-        return 216, 0
+        return 216, 0 -- You do not have an appropriate ranged weapon equipped.
     end
-    if player:hasItem(2182, 0) or player:hasItem(2974, 0) then
+
+    if player:hasItem(2182, 0) then -- Light Card
         return 0, 0
     else
-        return 71, 0
+        return 71, 0 -- <name> cannot perform that action.
     end
 end
 
@@ -27,16 +26,19 @@ function onUseAbility(player, target, ability)
 
     if resist < 0.5 then
         ability:setMsg(tpz.msg.basic.JA_MISS_2) -- resist message
+
         return tpz.effect.SLEEP_I
     end
 
     duration = duration * resist
 
     local effects = {}
+
     local dia = target:getStatusEffect(tpz.effect.DIA)
     if dia ~= nil then
         table.insert(effects, dia)
     end
+
     local threnody = target:getStatusEffect(tpz.effect.THRENODY)
     if threnody ~= nil and threnody:getSubPower() == tpz.mod.DARKRES then
         table.insert(effects, threnody)
@@ -52,10 +54,17 @@ function onUseAbility(player, target, ability)
         local tier = effect:getTier()
         local effectId = effect:getType()
         local subId = effect:getSubType()
-        power = power * 1.5
-        subpower = subpower * 1.5
+
+        if effectId == tpz.effect.DIA then
+            power = power + 1 -- Damage over time
+            subpower = subpower + 5 -- Defense down
+        elseif effectId == tpz.effect.THRENODY then
+            power = math.floor(power * 1.5)
+        end
+
         target:delStatusEffectSilent(effectId)
         target:addStatusEffect(effectId, power, tick, duration, subId, subpower, tier)
+
         local newEffect = target:getStatusEffect(effectId)
         newEffect:setStartTime(startTime)
     end
@@ -66,7 +75,9 @@ function onUseAbility(player, target, ability)
         ability:setMsg(tpz.msg.basic.JA_NO_EFFECT_2)
     end
 
-    local del = player:delItem(2182, 1) or player:delItem(2974, 1)
     target:updateClaim(player)
+
+    player:delItem(2182, 1) -- Light Card
+
     return tpz.effect.SLEEP_I
 end

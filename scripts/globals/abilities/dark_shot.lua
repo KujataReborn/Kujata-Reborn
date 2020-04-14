@@ -8,15 +8,14 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player, target, ability)
-    --ranged weapon/ammo: You do not have an appropriate ranged weapon equipped.
-    --no card: <name> cannot perform that action.
     if player:getWeaponSkillType(tpz.slot.RANGED) ~= tpz.skill.MARKSMANSHIP or player:getWeaponSkillType(tpz.slot.AMMO) ~= tpz.skill.MARKSMANSHIP then
-        return 216, 0
+        return 216, 0 -- You do not have an appropriate ranged weapon equipped.
     end
-    if player:hasItem(2183, 0) or player:hasItem(2974, 0) then
+
+    if player:hasItem(2974, 0) then -- Dark Card
         return 0, 0
     else
-        return 71, 0
+        return 71, 0 -- <name> cannot perform that action.
     end
 end
 
@@ -27,20 +26,24 @@ function onUseAbility(player, target, ability)
 
     if resist < 0.25 then
         ability:setMsg(tpz.msg.basic.JA_MISS_2) -- resist message
+
         return 0
     end
 
     duration = duration * resist
 
     local effects = {}
+
     local bio = target:getStatusEffect(tpz.effect.BIO)
     if bio ~= nil then
         table.insert(effects, bio)
     end
+
     local blind = target:getStatusEffect(tpz.effect.BLINDNESS)
     if blind ~= nil then
         table.insert(effects, blind)
     end
+
     local threnody = target:getStatusEffect(tpz.effect.THRENODY)
     if threnody ~= nil and threnody:getSubPower() == tpz.mod.LIGHTRES then
         table.insert(effects, threnody)
@@ -56,22 +59,34 @@ function onUseAbility(player, target, ability)
         local tier = effect:getTier()
         local effectId = effect:getType()
         local subId = effect:getSubType()
-        power = power * 1.5
-        subpower = subpower * 1.5
+
+        if effectId == tpz.effect.BIO then
+            power = power + 3 -- Damage over time
+            subpower = subpower + 5 -- Attack down
+            tier = tier + 1
+        elseif effectId == tpz.effect.BLINDNESS then
+            power = math.floor(power * 1.1)
+        elseif effectId == tpz.effect.THRENODY then
+            power = math.floor(power * 1.5)
+        end
+
         target:delStatusEffectSilent(effectId)
         target:addStatusEffect(effectId, power, tick, duration, subId, subpower, tier)
+
         local newEffect = target:getStatusEffect(effectId)
         newEffect:setStartTime(startTime)
     end
 
     ability:setMsg(tpz.msg.basic.JA_REMOVE_EFFECT_2)
+
     local dispelledEffect = target:dispelStatusEffect()
     if dispelledEffect == tpz.effect.NONE then
-        -- no effect
         ability:setMsg(tpz.msg.basic.JA_NO_EFFECT_2)
     end
 
-    local del = player:delItem(2183, 1) or player:delItem(2974, 1)
     target:updateClaim(player)
+
+    player:delItem(2183, 1) -- Dark Card
+
     return dispelledEffect
 end

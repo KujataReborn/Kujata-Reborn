@@ -9,15 +9,14 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player, target, ability)
-    --ranged weapon/ammo: You do not have an appropriate ranged weapon equipped.
-    --no card: <name> cannot perform that action.
     if player:getWeaponSkillType(tpz.slot.RANGED) ~= tpz.skill.MARKSMANSHIP or player:getWeaponSkillType(tpz.slot.AMMO) ~= tpz.skill.MARKSMANSHIP then
-        return 216, 0
+        return 216, 0 -- You do not have an appropriate ranged weapon equipped.
     end
-    if player:hasItem(2177, 0) or player:hasItem(2974, 0) then
+
+    if player:hasItem(2177, 0) then -- Ice Card
         return 0, 0
     else
-        return 71, 0
+        return 71, 0 -- <name> cannot perform that action.
     end
 end
 
@@ -35,9 +34,15 @@ function onUseAbility(player, target, ability, action)
 
     if dmg > 0 then
         local effects = {}
+
         local frost = target:getStatusEffect(tpz.effect.FROST)
         if frost ~= nil then
             table.insert(effects, frost)
+        end
+        
+        local paralyze = target:getStatusEffect(tpz.effect.PARALYSIS)
+        if paralyze ~= nil then
+            table.insert(effects, paralyze)
         end
 
         local threnody = target:getStatusEffect(tpz.effect.THRENODY)
@@ -45,10 +50,6 @@ function onUseAbility(player, target, ability, action)
             table.insert(effects, threnody)
         end
 
-        local paralyze = target:getStatusEffect(tpz.effect.PARALYSIS)
-        if paralyze ~= nil then
-            table.insert(effects, paralyze)
-        end
 
         if #effects > 0 then
             local effect = effects[math.random(#effects)]
@@ -60,16 +61,26 @@ function onUseAbility(player, target, ability, action)
             local tier = effect:getTier()
             local effectId = effect:getType()
             local subId = effect:getSubType()
-            power = power * 1.2
+
+            if effectId == tpz.effect.FROST then
+                power = math.floor(power * 1.2)
+            elseif effectId == tpz.effect.SLOW then
+                power = math.floor(power * 1.1)
+            elseif effectId == tpz.effect.THRENODY then
+                power = math.floor(power * 1.5)
+            end
+
             target:delStatusEffectSilent(effectId)
             target:addStatusEffect(effectId, power, tick, duration, subId, subpower, tier)
+
             local newEffect = target:getStatusEffect(effectId)
             newEffect:setStartTime(startTime)
         end
     end
 
-    local del = player:delItem(2177, 1) or player:delItem(2974, 1)
+    player:delItem(2177, 1) -- Ice Card
 
     target:updateClaim(player)
+
     return dmg
 end
