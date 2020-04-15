@@ -84,7 +84,7 @@ namespace conquest
             Sql_GetIntData(SqlHandle, 3),
         };
 
-        if (influences[nation] == 5000)
+        if (influences[nation] == 12000)
             return;
 
         auto lost = 0;
@@ -95,7 +95,7 @@ namespace conquest
                 continue;
             }
 
-            auto loss = std::min<int>(points * influences[i] / (5000 - influences[nation]), influences[i]);
+            auto loss = std::min<int>(points * influences[i] / (12000 - influences[nation]), influences[i]);
             influences[i] -= loss;
             lost += loss;
         }
@@ -212,22 +212,22 @@ namespace conquest
             int64 total = san_inf + bas_inf + win_inf;
 
             //Sandoria
-            if (san_inf >= total * 0.65)	  offset = 3;
-            else if (san_inf >= total * 0.5)  offset = 2;
-            else if (san_inf >= total * 0.25) offset = 1;
-            else							  offset = 0;
+            if (san_inf >= total * 0.55)	                    offset = 3;
+            else if (san_inf >= bas_inf && san_inf >= win_inf)  offset = 2;
+            else if (san_inf >= total * 0.25)                   offset = 1;
+            else							                    offset = 0;
 
             //Bastok
-            if (bas_inf >= total * 0.65)	  offset += 12;
-            else if (bas_inf >= total * 0.5)  offset += 8;
-            else if (bas_inf >= total * 0.25) offset += 4;
-            else							  offset += 0;
+            if (bas_inf >= total * 0.55)                        offset += 12;
+            else if (bas_inf >= san_inf && bas_inf >= win_inf)  offset += 8;
+            else if (bas_inf >= total * 0.25)                   offset += 4;
+            else							                    offset += 0;
 
             //Windurst
-            if (win_inf >= total * 0.65)	  offset += 48;
-            else if (win_inf >= total * 0.5)  offset += 32;
-            else if (win_inf >= total * 0.25) offset += 16;
-            else							  offset += 0;
+            if (win_inf >= total * 0.55)	                    offset += 48;
+            else if (win_inf >= san_inf && win_inf >= bas_inf)  offset += 32;
+            else if (win_inf >= total * 0.25)                   offset += 16;
+            else							                    offset += 0;
 
             return offset;
         }
