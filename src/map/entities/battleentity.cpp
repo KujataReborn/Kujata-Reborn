@@ -117,6 +117,16 @@ bool CBattleEntity::isInAssault()
     return false;
 }
 
+bool CBattleEntity::isDualWeilding()
+{
+    if (m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
+             m_Weapons[SLOT_SUB]->getDmgType() < 4)
+    {
+        return true;
+    }
+    return false;
+}
+
 // return true if the mob has immunity
 bool CBattleEntity::hasImmunity(uint32 imID)
 {

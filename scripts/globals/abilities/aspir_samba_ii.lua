@@ -34,6 +34,6 @@ function onUseAbility(player,target,ability)
     duration = duration * (100 + player:getMod(tpz.mod.SAMBA_PDURATION))/100
     player:delStatusEffect(tpz.effect.HASTE_SAMBA)
     player:delStatusEffect(tpz.effect.DRAIN_SAMBA)
-    player:addStatusEffect(tpz.effect.ASPIR_SAMBA,2,0,duration)
+    player:addStatusEffect(tpz.effect.ASPIR_SAMBA,3,0,duration)
 
 end

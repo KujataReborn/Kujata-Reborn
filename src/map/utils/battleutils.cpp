@@ -983,6 +983,8 @@ namespace battleutils
             // Generic drain for anyone able to do melee damage to a dazed target
             // TODO: ignore dazes from dancers outside party
             int16 delay = PAttacker->GetWeaponDelay(false) / 10;
+			
+			if (PAttacker->isDualWeilding()) delay = delay / 2;
 
             if (PAttacker->PMaster == nullptr)
             {
@@ -1033,10 +1035,11 @@ namespace battleutils
 
                 if (daze == EFFECT_DRAIN_DAZE)
                 {
-                    uint16 multiplier = (uint16)(3 + (5.5f * power - 1));
-                    int8 Samba = tpzrand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
+                    int8 Samba = tpzrand::GetRandomNumber(1, (delay * power) / 100 + 1);
 
+					// retail testing showed there was no level correction to Samba Drain ammounts.
                     // vary damage based on lvl diff
+					/*
                     int8 lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel()) / 2;
 
                     if (lvlDiff < -5) {
@@ -1044,7 +1047,8 @@ namespace battleutils
                     }
 
                     Samba -= lvlDiff;
-
+					*/
+					
                     if (Samba > (finaldamage / 2)) {
                         Samba = finaldamage / 2;
                     }
@@ -1062,7 +1066,7 @@ namespace battleutils
                     Action->addEffectMessage = 161;
                     Action->addEffectParam = Samba;
 
-                    PAttacker->addHP(Samba);    // does not do any additional drain to targets HP, only a portion of it
+                    PAttacker->addHP(Samba);    // does not do any additional drain to targets HP, only heals a portion of it
                     if (PChar != nullptr) {
                         PChar->updatemask |= UPDATE_HP;
                     }
@@ -1070,7 +1074,7 @@ namespace battleutils
                 else if (daze == EFFECT_ASPIR_DAZE)
                 {
                     uint16 multiplier = 1 + (2 * power - 1);
-                    int8 Samba = tpzrand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
+                    int8 Samba = tpzrand::GetRandomNumber(1, (delay * power) / 100 + 1);
 
                     if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
 
