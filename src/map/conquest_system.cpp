@@ -124,10 +124,9 @@ namespace conquest
     *    +x point for beastmen                                              *
     ************************************************************************/
 
-    void LoseInfluencePoints(CCharEntity* PChar)
+    void LoseInfluencePoints(CCharEntity* PChar, uint8 points)
     {
         REGIONTYPE region = PChar->loc.zone->GetRegionID();
-        int points = 0;
 
         switch (region)
         {
@@ -135,7 +134,7 @@ namespace conquest
             case REGION_GUSTABERG:
             case REGION_SARUTABARUTA:
             {
-                points = 10;
+                points = std::min<int>(points, 25);
                 break;
             }
             case REGION_ZULKHEIM:
@@ -144,7 +143,7 @@ namespace conquest
             case REGION_DERFLAND:
             case REGION_ARAGONEU:
             {
-                points = 50;
+                points = std::min<int>(points, 50);
                 break;
             }
             case REGION_QUFIMISLAND:
@@ -152,7 +151,7 @@ namespace conquest
             case REGION_KUZOTZ:
             case REGION_ELSHIMOLOWLANDS:
             {
-                points = 75;
+                points = std::min<int>(points, 100);
                 break;
             }
             case REGION_VOLLBOW:
@@ -160,14 +159,14 @@ namespace conquest
             case REGION_FAUREGANDI:
             case REGION_ELSHIMOUPLANDS:
             {
-                points = 300;
+                points = std::min<int>(points, 200);
                 break;
             }
             case REGION_TULIA:
             case REGION_MOVALPOLOS:
             case REGION_TAVNAZIA:
             {
-                points = 600;
+                //effective cap is 240, based on maximum exp loss
                 break;
             }
             default:

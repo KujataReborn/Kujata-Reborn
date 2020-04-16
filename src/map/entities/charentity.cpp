@@ -1663,7 +1663,8 @@ void CCharEntity::Die()
     setBlockingAid(false);
 
     //influence for conquest system
-    conquest::LoseInfluencePoints(this);
+    uint8 influenceLost = mLevel <= 67 ? (charutils::GetExpNEXTLevel(mLevel) * 8) / 1000 : 240;
+    conquest::LoseInfluencePoints(this, influenceLost);
 
     if (GetLocalVar("MijinGakure") == 0)
     {
