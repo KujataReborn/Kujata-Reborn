@@ -466,9 +466,11 @@ function corsairSetup(caster, ability, action, effect, job)
                              true)
     caster:setLocalVar("corsairRollTotal", roll)
     action:speceffect(caster:getID(), roll)
-    if (checkForElevenRoll(caster)) then
-        action:recast(action:recast()/2)
-    end
+
+    -- if checkForElevenRoll(caster)  then
+        -- action:recast(action:recast() / 2)
+    -- end
+
     checkForJobBonus(caster, job)
     caster:addRecast(tpz.recast.ABILITY, 194, 8)
 end
