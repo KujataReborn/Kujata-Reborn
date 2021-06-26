@@ -351,6 +351,9 @@ public:
     bool hasMoghancement(uint16 moghancementID);
     void UpdateMoghancement();
 
+    /* call this when the mob I'm engaged on dies */
+    void AutoTarget();
+
     /* State callbacks */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual bool OnAttack(CAttackState&, action_t&) override;

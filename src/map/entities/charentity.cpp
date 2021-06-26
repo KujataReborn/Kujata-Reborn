@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -639,6 +639,30 @@ void CCharEntity::OnDisengage(CAttackState& state)
     PLatentEffectContainer->CheckLatentsWeaponDraw(false);
 }
 
+/* call this when the mob I'm engaged on dies */
+void CCharEntity::AutoTarget()
+{
+    if (this->m_hasAutoTarget)
+    {
+        for (auto&& PPotentialTarget : this->SpawnMOBList)
+        {
+            if (PPotentialTarget.second->animation == ANIMATION_ATTACK &&
+                isFaceing(this->loc.p, PPotentialTarget.second->loc.p, 72) &&
+                distanceSquared(this->loc.p, PPotentialTarget.second->loc.p) <= 400)
+            {
+                std::unique_ptr<CBasicPacket> errMsg;
+                if (IsValidTarget(PPotentialTarget.second->targid, TARGET_ENEMY, errMsg))
+                {
+                    // ShowDebug("found valid autotarget, changing target\n");
+                    auto controller{ static_cast<CPlayerController*>(PAI->GetController()) };
+                    controller->ChangeTarget(PPotentialTarget.second->targid);
+                    return;
+                }
+            }
+        }
+    }
+}
+
 bool CCharEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg)
 {
     float dist = distance(loc.p, PTarget->loc.p);
@@ -674,28 +698,6 @@ bool CCharEntity::OnAttack(CAttackState& state, action_t& action)
     auto controller {static_cast<CPlayerController*>(PAI->GetController())};
     controller->setLastAttackTime(server_clock::now());
     auto ret = CBattleEntity::OnAttack(state, action);
-
-    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
-
-    if (PTarget->isDead())
-    {
-        if (this->m_hasAutoTarget && PTarget->objtype == TYPE_MOB) // Auto-Target
-        {
-            for (auto&& PPotentialTarget : this->SpawnMOBList)
-            {
-                if (PPotentialTarget.second->animation == ANIMATION_ATTACK &&
-                    isFaceing(this->loc.p, PPotentialTarget.second->loc.p, 64) &&
-                    distance(this->loc.p, PPotentialTarget.second->loc.p) <= 10)
-                {
-                    std::unique_ptr<CBasicPacket> errMsg;
-                    if (IsValidTarget(PPotentialTarget.second->targid, TARGET_ENEMY, errMsg))
-                    {
-                        controller->ChangeTarget(PPotentialTarget.second->targid);
-                    }
-                }
-            }
-        }
-    }
     return ret;
 }
 
