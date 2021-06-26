@@ -502,7 +502,6 @@ function souleaterBonus(attacker, numhits)
 end
 
 function accVariesWithTP(hitrate,acc,tp,a1,a2,a3)
-    -- sadly acc varies with tp ALL apply an acc PENALTY, the acc at various %s are given as a1 a2 a3
     accpct = fTP(tp,a1,a2,a3)
     acclost = acc - (acc*accpct)
     hrate = hitrate - (0.005*acclost)
